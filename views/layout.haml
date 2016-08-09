@@ -1,0 +1,56 @@
+
+%html
+%script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"}
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.0/vis-network.min.js"}
+
+%title WikiGraph
+/ # author mastermaiknemo github
+%h2 WikipediaMapper
+%p Add a title of a Wikipedia Page..
+%input#input
+%body
+#mynetwork
+:javascript
+	$("#input").keypress(function(e){
+	if (e.which == 13){
+		var value = $("#input").val();
+		var data = {"val": value}
+		$.when($.ajax({
+			type : 'get',
+			url : '/pagein',
+			data : data
+			})).done(function( x ) {
+	  		addNodes();
+				});
+		}
+		});	
+
+		var contentjson;
+		 function addNodes(){
+			$.get("getnodes", function( data ) {
+					contentjson = data;
+						var jarr = JSON.parse(contentjson)
+							for (var i in jarr){ 
+						  		nodes.add({id: jarr[i].id, label: jarr[i].label});
+							   edges.add({id: jarr[i].id, from: jarr[0].id, to: jarr[i].id});
+										  		}		});	
+							}
+
+		  var nodes = new vis.DataSet([
+		  ]);
+
+		  var edges = new vis.DataSet([
+		  ]);
+
+		  var container = document.getElementById('mynetwork');
+		  var data = {
+		    nodes: nodes,
+		    edges: edges
+		  };
+		    var options = {
+		  autoResize: true,
+		  height: '100%',
+		  width: '100%'
+			}
+		  var network = new vis.Network(container, data, options);
+	
