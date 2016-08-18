@@ -6,7 +6,7 @@ all you need to do: install the missing gems and run `ruby rubapi.rb` in CLI
 
 `gem install sinatra`
 
-`gem install sinatra-reloader (usefull for local development)`
+`gem install sinatra-reloader (useful for local development)`
 
 `gem install mechanize`
 
