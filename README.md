@@ -10,15 +10,15 @@ all you need to do: install the missing gems and run `ruby rubapi.rb` in CLI
 
 `gem install mechanize`
 
-Start:
-
-
 Then visit localhost:4567 and enjoy the enter key (dont keep it pressed too long).
 
 ![](http://www.sinatrarb.com/sinatra.github.com/images/logo.png)
 
-^_____^
+Feel free to extend the code. Its not much.. ^_____^
 
+Demo usage:
+
+![](http://www.yourdesktop.net/demo_usage.png)
 
 
 
