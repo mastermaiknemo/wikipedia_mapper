@@ -1,5 +1,7 @@
 ##Delightfull WikipediaMapper using sinatra gem and vis.js
 
+Demo available -> [Demo](http://kingski-brothers.com/)
+
 all you need to do: install the missing gems and run `ruby rubapi.rb` in CLI
 
 `gem install sinatra`
