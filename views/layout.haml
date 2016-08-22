@@ -1,4 +1,3 @@
-
 %html
 %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"}
 %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.0/vis-network.min.js"}
@@ -11,46 +10,55 @@
 %body
 #mynetwork
 :javascript
-	$("#input").keypress(function(e){
-	if (e.which == 13){
-		var value = $("#input").val();
-		var data = {"val": value}
-		$.when($.ajax({
-			type : 'get',
-			url : '/pagein',
-			data : data
-			})).done(function( x ) {
-	  		addNodes();
-				});
-		}
-		});	
+    $("#input").keypress(function(e){
+    if (e.which == 13){
+        var value = $("#input").val();
+        var data = {"val": value}
+        $.when($.ajax({
+            type : 'get',
+            url : '/pagein',
+            data : data
+            })).done(function( x ) {
+              addNodes();
+                });
+        }
+        });    
 
-		var contentjson;
-		 function addNodes(){
-			$.get("getnodes", function( data ) {
-					contentjson = data;
-						var jarr = JSON.parse(contentjson)
-							for (var i in jarr){ 
-						  		nodes.add({id: jarr[i].id, label: jarr[i].label});
-							   edges.add({id: jarr[i].id, from: jarr[0].id, to: jarr[i].id});
-										  		}		});	
-							}
+        var contentjson;
+         function addNodes(){
+            $.get("getnodes", function( data ) {
+                    contentjson = data;
+                        var jarr = JSON.parse(contentjson)
+                            for (var i in jarr){ 
+                                  nodes.update({id: jarr[i].id, label: jarr[i].label});
+                                   edges.update({id: jarr[i].id, from: jarr[0].id, to: jarr[i].id});
+                                    for(var j = 0;j<jarr[0].id; j++){
+                                    if(nodes._data[j] != undefined){
+                                        if(nodes._data[j].label == jarr[i].label){
+                                        console.log("s")
+                                            edges.update({id: jarr[i].id+300, from: jarr[i].id, to: nodes._data[j].id});
+                                        }
+                                    }
+                                    }
 
-		  var nodes = new vis.DataSet([
-		  ]);
+                                        }
+                                    });    
+                                }    
 
-		  var edges = new vis.DataSet([
-		  ]);
+          var nodes = new vis.DataSet([
+          ]);
 
-		  var container = document.getElementById('mynetwork');
-		  var data = {
-		    nodes: nodes,
-		    edges: edges
-		  };
-		    var options = {
-		  autoResize: true,
-		  height: '100%',
-		  width: '100%'
-			}
-		  var network = new vis.Network(container, data, options);
-	
+          var edges = new vis.DataSet([
+          ]);
+
+          var container = document.getElementById('mynetwork');
+          var data = {
+            nodes: nodes,
+            edges: edges
+          };
+            var options = {
+          autoResize: true,
+          height: '100%',
+          width: '100%'
+            }
+          var network = new vis.Network(container, data, options);
