@@ -15,7 +15,7 @@ get '/pagein' do
 	a = Mechanize.new
 	req1 = a.get "https://en.wikipedia.org/wiki/#{$title}"
 	puts $title
-	$nodes1 = req1.parser.xpath "/html/body/div[3]/div[3]/div[4]/p[1]"
+	$nodes1 = req1.parser.xpath "/html/body/div[3]/div[3]/div[4]/p[count(preceding::p) < 3]"
 	links = []
 	$nodes1.xpath("a/@href").each do |l|
 		links.push l.to_s.gsub(/^\/wiki\//, '')
