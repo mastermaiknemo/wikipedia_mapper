@@ -3,7 +3,7 @@
 How to use: Type any Wikipedia article title into the input field and press enter; a graph will be visualized for you.
             You can add as many articles as you want. Equal nodes will be connected together.
 
-Demo available -> [Demo](http://kingski-brothers.com/)
+Demo available -> [Demo](http://kingski-brothers.com:8080/)
 
 all you need to do: install the missing gems and run `ruby rubapi.rb` in CLI
 
