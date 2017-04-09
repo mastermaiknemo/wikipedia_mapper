@@ -19,9 +19,6 @@ Then visit localhost:4567 and enjoy the enter key (dont keep it pressed too long
 
 Feel free to extend the code. Its not much.. ^_____^
 
-Demo usage:
-
-![](http://www.yourdesktop.net/demo_usage.png)
 
 
 
